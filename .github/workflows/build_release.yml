@@ -65,6 +65,8 @@ jobs:
 
       - name: Copy sing-box sources to vpn-box
         run: |
+          ls
+          mkdir VTBox
           cp -r sing-box/* VTBox/
 
       - name: Rename sing-box to vpn-box
