@@ -59,7 +59,7 @@ jobs:
 
       - name: Clone sing-box repository
         run: |
-          git clone https://github.com/SagerNet/sing-box.git .
+          git clone https://github.com/SagerNet/sing-box.git
           cd sing-box
           git checkout "${{ steps.check_release.outputs.new_release }}"
 
