@@ -61,7 +61,7 @@ jobs:
         run: |
           git clone https://github.com/SagerNet/sing-box.git
           cd sing-box
-          git checkout "v${{ vars.LAST_S
+          git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
 
       - name: Rename sing-box to VTBox
         run: |
