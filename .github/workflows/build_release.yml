@@ -32,7 +32,7 @@ jobs:
       - name: Check if release has changed
         id: check_release
         run: |
-          if [ "${{ vars.LAST_SIN_GBOX_RELEASE }}" == "${{ env.release_name }}" ]; then
+          if [ "${{ vars.LAST_SING_BOX_RELEASE }}" == "${{ env.release_name }}" ]; then
             echo "Release has not changed. Exiting."
             #exit 1
           else
