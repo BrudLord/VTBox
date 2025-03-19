@@ -11,22 +11,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  demo_app_authentication:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Generate a token
-        id: generate-token
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ vars.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-
-      - name: Use the token
-        env:
-          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
-        run: |
-          gh api octocat
-
   check_release:
     runs-on: ubuntu-latest
     permissions:
@@ -34,7 +18,7 @@ jobs:
       actions:
         write
     env:
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
