@@ -65,11 +65,11 @@ jobs:
 
       - name: Copy sing-box sources to VTBox
         run: |
-          ls
           mkdir VTBox
           cp -r sing-box/* VTBox/
-          ls
+          rm sing-box
 
-      - name: Rename sing-box to vpn-box
+      - name: Rename sing-box to VTBox
         run: |
           find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
+          find vpn-box -depth -type d -name '*sing-box*' -execdir bash -c 'mv "$1" "${1//sing-box/vpn-box}"' _ {} \;
