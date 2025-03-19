@@ -10,17 +10,16 @@ concurrency:
   group: release_workflow
   cancel-in-progress: true
 
-permissions: write-all
 
 jobs:
   check_release:
     runs-on: ubuntu-latest
     env:
-      GH_TOKEN: ${{ github.token }}
+      GH_TOKEN: ${{ GH_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Test
         run: |
-          gh variable set vars.LAST_HIDDIFY_RELEASE --body "1223"
+          gh variable set LAST_HIDDIFY_RELEASE --body "1223"
