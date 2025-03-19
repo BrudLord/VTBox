@@ -73,3 +73,4 @@ jobs:
         run: |
           find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
           find vpn-box -depth -type d -name '*sing-box*' -execdir bash -c 'mv "$1" "${1//sing-box/vpn-box}"' _ {} \;
+          tree
