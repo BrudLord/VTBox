@@ -65,8 +65,12 @@ jobs:
 
       - name: Copy sing-box sources to VTBox
         run: |
+          ls
           mkdir VTBox
           cp -r sing-box/* VTBox/
+          cd sing-box
+          ls
+          cd ..
           rmdir sing-box
 
       - name: Rename sing-box to VTBox
