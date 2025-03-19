@@ -32,7 +32,7 @@ jobs:
       - name: Check if release has changed
         id: check_release
         run: |
-          if [ "${{ vars.LAST_SINGBOX_RELEASE }}" == "${{ env.release_name }}" ]; then
+          if [ "${{ vars.LAST_SIN_GBOX_RELEASE }}" == "${{ env.release_name }}" ]; then
             echo "Release has not changed. Exiting."
             #exit 1
           else
@@ -44,7 +44,7 @@ jobs:
         if: steps.check_release.outputs.new_release != ''
         run: |
           echo "Performing actions for the new release: ${{ steps.check_release.outputs.new_release }}"
-          gh variable set LAST_SINGBOX_RELEASE --body "${{ steps.check_release.outputs.new_release }}"
+          gh variable set LAST_SING_BOX_RELEASE --body "${{ steps.check_release.outputs.new_release }}"
           
 
   create_release:
@@ -61,7 +61,7 @@ jobs:
         run: |
           git clone https://github.com/SagerNet/sing-box.git
           cd sing-box
-          git checkout "${{ steps.check_release.outputs.new_release }}"
+          git checkout "${{ vars.LAST_SING_BOX_RELEASE }}"
 
       - name: Copy sing-box sources to vpn-box
         run: |
