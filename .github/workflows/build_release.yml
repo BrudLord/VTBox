@@ -13,16 +13,11 @@ concurrency:
 jobs:
   check_release:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read    # Make sure you grant read permission if using GITHUB_TOKEN
     env:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Install GitHub CLI
-        uses: actions/setup-gh-cli@v2
 
       - name: Get the last release name
         id: get_release
