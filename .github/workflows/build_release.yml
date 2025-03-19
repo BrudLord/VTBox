@@ -61,7 +61,7 @@ jobs:
         run: |
           git clone https://github.com/SagerNet/sing-box.git
           cd sing-box
-          git checkout "${{ vars.LAST_SING_BOX_RELEASE }}"
+          git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
 
       - name: Copy sing-box sources to vpn-box
         run: |
