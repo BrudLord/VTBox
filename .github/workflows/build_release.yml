@@ -63,12 +63,13 @@ jobs:
           cd sing-box
           git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
 
-      - name: Copy sing-box sources to vpn-box
+      - name: Copy sing-box sources to VTBox
         run: |
           ls
           mkdir VTBox
           cp -r sing-box/* VTBox/
+          ls
 
       - name: Rename sing-box to vpn-box
         run: |
-          find vpn-box -type f -exec sed -i 's/sing-box/VTBox/g' {} +
+          find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
