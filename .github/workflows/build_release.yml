@@ -59,14 +59,14 @@ jobs:
 
       - name: Clone sing-box repository
         run: |
-          git clone https://github.com/SagerNet/sing-box.git sing-box
+          git clone https://github.com/SagerNet/sing-box.git .
           cd sing-box
           git checkout "${{ steps.check_release.outputs.new_release }}"
 
       - name: Copy sing-box sources to vpn-box
         run: |
-          cp -r sing-box/* vpn-box/
+          cp -r sing-box/* VTBox/
 
       - name: Rename sing-box to vpn-box
         run: |
-          find vpn-box -type f -exec sed -i 's/sing-box/vpn-box/g' {} +
+          find vpn-box -type f -exec sed -i 's/sing-box/VTBox/g' {} +
