@@ -25,4 +25,4 @@ jobs:
 
       - name: Test
         run: |
-          gh variable set LAST_HIDDIFY_RELEASE --body "1223"
+          gh variable set env.LAST_HIDDIFY_RELEASE --body "1223"
