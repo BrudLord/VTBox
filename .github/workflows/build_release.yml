@@ -61,17 +61,7 @@ jobs:
         run: |
           git clone https://github.com/SagerNet/sing-box.git
           cd sing-box
-          git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
-
-      - name: Copy sing-box sources to VTBox
-        run: |
-          ls
-          mkdir VTBox
-          cp -r sing-box/* VTBox/
-          cd sing-box
-          ls
-          cd ..
-          rmdir sing-box
+          git checkout "v${{ vars.LAST_S
 
       - name: Rename sing-box to VTBox
         run: |
