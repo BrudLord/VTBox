@@ -10,10 +10,11 @@ concurrency:
   group: release_workflow
   cancel-in-progress: true
 
+permissions: write-all
+
 jobs:
   check_release:
     runs-on: ubuntu-latest
-    permissions: write-all
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
@@ -22,4 +23,4 @@ jobs:
 
       - name: Test
         run: |
-          gh variable set env.LAST_HIDDIFY_RELEASE --body "1223"
+          gh variable set vars.LAST_HIDDIFY_RELEASE --body "1223"
