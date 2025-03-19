@@ -67,7 +67,7 @@ jobs:
         run: |
           mkdir VTBox
           cp -r sing-box/* VTBox/
-          rm sing-box
+          rmdir sing-box
 
       - name: Rename sing-box to VTBox
         run: |
