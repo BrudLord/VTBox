@@ -50,7 +50,7 @@ jobs:
 
   create_release:
     runs-on: ubuntu-latest
-    needs: check_release
+    #needs: check_release
     permissions:
       contents: write
     env:
@@ -67,6 +67,7 @@ jobs:
       - name: Run ex-build
         run: |
           gh workflow run ex_build.yml
+          gh run watch
 
 
 #      - name: Rename sing-box to VTBox
