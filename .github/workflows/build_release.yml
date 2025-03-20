@@ -74,6 +74,6 @@ jobs:
 
   build:
     needs: create_release
-    uses: SagerNet/sing-box/.github/workflows/build.yml@${{ vars.LAST_SING_BOX_RELEASE }}
+    uses: SagerNet/sing-box/.github/workflows/build.yml@v${{ vars.LAST_SING_BOX_RELEASE }}
     with:
       version: ${{ vars.LAST_SING_BOX_RELEASE }}
