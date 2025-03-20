@@ -72,6 +72,6 @@ jobs:
 
   deploy:
     needs: create_release
-    uses: ./sing-box/.github/workflows/build.yml@main
+    uses: ./sing-box/.github/workflows/build.yml
     with:
-      version: ${{ vars.LAST_SING_BOX_RELEASE }}
+      version: "v${{ vars.LAST_SING_BOX_RELEASE }}"
