@@ -64,10 +64,8 @@ jobs:
           cd sing-box
           git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
 
-      - name: Run ex-build
-        run: |
-          RUN_ID=$(gh run list --json databaseId --workflow=ex_build.yml --limit 1 | jq -r '.[0].databaseId')
-          gh run watch $RUN_ID
+      - name: Call ex_build workflow
+        uses: ./.github/workflows/ex_build.yml
 
 
 #      - name: Rename sing-box to VTBox
