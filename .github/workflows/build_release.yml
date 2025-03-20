@@ -64,8 +64,8 @@ jobs:
           cd sing-box
           git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
 
-  ex_build:
-    uses: ./.github/workflows/ex_build.yml
+      - name: ex_build
+        uses: ./.github/workflows/ex_build.yml
 
 
 #      - name: Rename sing-box to VTBox
