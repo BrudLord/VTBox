@@ -65,6 +65,7 @@ jobs:
           git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
           ls -a
           gh workflow list
+          gh workflow run build.yml
 
 #      - name: Rename sing-box to VTBox
 #        run: |
