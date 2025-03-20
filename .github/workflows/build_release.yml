@@ -68,6 +68,7 @@ jobs:
 
       - name: ex_build
         run: |
+          cd sing-box
           gh workflow list
           gh workflow run build.yml --ref "v${{ vars.LAST_SING_BOX_RELEASE }}"
 
