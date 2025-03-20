@@ -65,7 +65,7 @@ jobs:
           git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
 
       - name: Call ex_build workflow
-        uses: ./.github/workflows/ex_build.yml
+        uses: BrudLord/VTBox/.github/workflows/ex_build.yml
 
 
 #      - name: Rename sing-box to VTBox
