@@ -5,7 +5,7 @@ on:
 
 
 jobs:
-  check_release:
+  executor:
     runs-on: ubuntu-latest
     steps:
       - name: BUILD TREEEEEEEEEEEEEEEEE
