@@ -70,8 +70,17 @@ jobs:
 #          find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
 #          tree -a
 
+  build_and_publish:
+    runs-on: ubuntu-latest
+    needs: check_release
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Tree
+        run: tree -a
+
   deploy:
-    needs: create_release
+    needs: build_and_publish
     uses: ./sing-box/.github/workflows/build.yml
     with:
       version: "v${{ vars.LAST_SING_BOX_RELEASE }}"
