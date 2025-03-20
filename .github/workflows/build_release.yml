@@ -72,7 +72,7 @@ jobs:
 
       - name: Trigger build workflow
         run: |
-          # Change into the renamed repository directory.
-          cd VTBox
-          # Trigger the build.yml workflow using GitHub CLI.
-          gh workflow run .github/workflows/build.yml --ref "v${{ vars.LAST_SING_BOX_RELEASE }}"
+          # Запускаем workflow напрямую из репозитория sing-box
+          gh workflow run .github/workflows/build.yml \
+            --repo SagerNet/sing-box \
+            --ref "v${{ vars.LAST_SING_BOX_RELEASE }}"
