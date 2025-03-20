@@ -50,6 +50,8 @@ jobs:
 
   create_release:
     runs-on: ubuntu-latest
+    outputs:
+      release_folder: ${{ steps.prepare.outputs.release_folder }}
     #needs: check_release
     permissions:
       contents: write
@@ -66,11 +68,8 @@ jobs:
 
       - name: ex_build
         run: |
-          curl -X POST \
-            -H "Authorization: token $GH_TOKEN" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/BrudLord/VTBox/actions/workflows/ex_build.yml/dispatches \
-            -d '{"ref":"main"}'
+          gh workflow list
+          gh workflow run build.yml --ref "v${{ vars.LAST_SING_BOX_RELEASE }}"
 
 
 #      - name: Rename sing-box to VTBox
