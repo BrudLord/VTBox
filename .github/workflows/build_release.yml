@@ -64,15 +64,12 @@ jobs:
           cd sing-box
           git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
 
-      - name: Rename sing-box to VTBox
-        run: |
-          find sing-box -depth -type d -name '*sing-box*' -execdir bash -c 'mv "$1" "${1//sing-box/VTBox}"' _ {} \;
-          find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
-          tree -a
+#      - name: Rename sing-box to VTBox
+#        run: |
+#          find sing-box -depth -type d -name '*sing-box*' -execdir bash -c 'mv "$1" "${1//sing-box/VTBox}"' _ {} \;
+#          find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
+#          tree -a
 
-      - name: Trigger build workflow
-        run: |
-          # Запускаем workflow напрямую из репозитория sing-box
-          gh workflow run .github/workflows/build.yml \
-            --repo SagerNet/sing-box \
-            --ref "v${{ vars.LAST_SING_BOX_RELEASE }}"
+  deploy:
+    needs: create_release
+    uses: ./sing-box/.github/workflows/build.yml
