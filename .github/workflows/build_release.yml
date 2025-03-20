@@ -72,4 +72,4 @@ jobs:
           find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
 
       - name: Build VTBox
-        run: gh workflow run external.yml --repo ${{ github.repository }}
+        run: gh workflow run build.yml --repo SagerNet/sing-box
