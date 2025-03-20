@@ -65,8 +65,27 @@ jobs:
           git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
 
       - name: Run ex-build
+        id: run_ex_build
         run: |
-          gh workflow run ex_build.yml
+          workflow_id=$(gh workflow view ex_build.yml --json id -q .id)
+          run_id=$(gh workflow run ex_build.yml --json id -q .id)
+          echo "Started workflow with ID: $run_id"
+
+          # Ожидаем завершения workflow
+          while :; do
+            status=$(gh run view $run_id --json status -q .status)
+            if [ "$status" == "completed" ]; then
+              conclusion=$(gh run view $run_id --json conclusion -q .conclusion)
+              echo "Workflow finished with status: $conclusion"
+              if [ "$conclusion" != "success" ]; then
+                exit 1
+              fi
+              break
+            fi
+            echo "Waiting for workflow to complete..."
+            sleep 10
+          done
+
 
 #      - name: Rename sing-box to VTBox
 #        run: |
