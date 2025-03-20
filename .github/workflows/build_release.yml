@@ -65,6 +65,7 @@ jobs:
           git clone https://github.com/SagerNet/sing-box.git
           cd sing-box
           git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
+          tree -a
 
       - name: ex_build
         run: |
