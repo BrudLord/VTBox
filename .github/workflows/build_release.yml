@@ -78,9 +78,3 @@ jobs:
     steps:
       - name: Tree
         run: tree -a
-
-  deploy:
-    needs: build_and_publish
-    uses: ./sing-box/.github/workflows/build.yml
-    with:
-      version: "v${{ vars.LAST_SING_BOX_RELEASE }}"
