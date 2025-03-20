@@ -53,7 +53,7 @@ jobs:
     permissions:
       contents: write
     env:
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
 
@@ -67,4 +67,6 @@ jobs:
         run: |
           find sing-box -depth -type d -name '*sing-box*' -execdir bash -c 'mv "$1" "${1//sing-box/VTBox}"' _ {} \;
           find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
-          tree
+
+      - name: Build VTBox
+        run: gh workflow run external.yml --repo ${{ github.repository }}
