@@ -74,5 +74,6 @@ jobs:
 
       - name: Build VTBox
         run: |
-          tree -a
+          cd ./VTBox/.github/workflows
+          ls
           gh workflow run ./VTBox/.github/workflows/build.yml
