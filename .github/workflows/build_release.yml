@@ -66,8 +66,8 @@ jobs:
 
       - name: Run ex-build
         run: |
-          gh workflow run ex_build.yml
-          gh run watch
+          RUN_ID=$(gh run list --json databaseId --workflow=ex_build.yml --limit 1 | jq -r '.[0].databaseId')
+          gh run $RUN_ID
 
 
 #      - name: Rename sing-box to VTBox
