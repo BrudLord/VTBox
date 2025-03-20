@@ -1,0 +1,13 @@
+name: Imagin that it is build from sing-box
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  check_release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: BUILD TREEEEEEEEEEEEEEEEE
+        run: |
+          tree -a
