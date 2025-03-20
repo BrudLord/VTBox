@@ -5,6 +5,9 @@ on:
     # Every tuesday at 10
     - cron: '0 10 * * 2'
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 concurrency:
   group: release_workflow
