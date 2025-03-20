@@ -70,8 +70,9 @@ jobs:
           find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
           tree -a
 
-  build:
-    needs: create_release
-    uses: SagerNet/sing-box/.github/workflows/build.yml@v${{ vars.LAST_SING_BOX_RELEASE }}
-    with:
-      version: ${{ vars.LAST_SING_BOX_RELEASE }}
+      - name: Trigger build workflow
+        run: |
+          # Change into the renamed repository directory.
+          cd VTBox
+          # Trigger the build.yml workflow using GitHub CLI.
+          gh workflow run .github/workflows/build.yml --ref "v${{ vars.LAST_SING_BOX_RELEASE }}"
