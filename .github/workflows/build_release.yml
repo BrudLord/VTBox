@@ -73,7 +73,4 @@ jobs:
           tree -a
 
       - name: Build VTBox
-        run: |
-          cd ./VTBox/.github/workflows
-          ls
-          gh workflow run ./VTBox/.github/workflows/build.yml
+        uses: SagerNet/sing-box/.github/workflows/build.yml@"v${{ vars.LAST_SING_BOX_RELEASE }}"
