@@ -72,5 +72,7 @@ jobs:
           find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
           tree -a
 
-      - name: Build VTBox
-        uses: SagerNet/sing-box/.github/workflows/build.yml@"v${{ vars.LAST_SING_BOX_RELEASE }}"
+  build:
+    needs: create_release
+    build:
+      uses: SagerNet/sing-box/.github/workflows/build.yml@"v${{ vars.LAST_SING_BOX_RELEASE }}"
