@@ -70,6 +70,7 @@ jobs:
         run: |
           find sing-box -depth -type d -name '*sing-box*' -execdir bash -c 'mv "$1" "${1//sing-box/VTBox}"' _ {} \;
           find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
+          tree
 
       - name: Build VTBox
-        run: gh workflow run build.yml --repo SagerNet/sing-box
+        uses: VTBox/.github/workflows/build.yml
