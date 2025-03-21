@@ -71,6 +71,8 @@ jobs:
           cd ..
           rm -rf sing-box
           tree -a
+
+    fst:
     uses: ./github/workflows/ex_build.yml
 
 
