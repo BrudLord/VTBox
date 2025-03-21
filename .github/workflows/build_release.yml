@@ -65,6 +65,12 @@ jobs:
           git clone https://github.com/SagerNet/sing-box.git
           cd sing-box
           git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
+          rm -rf .git
+          mv * ..
+          rsync -a .[^.]* .. 
+          cd ..
+          rm -rf sing-box
+          tree -a
           
 
       - name: ex_build
