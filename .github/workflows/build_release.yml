@@ -70,17 +70,12 @@ jobs:
           rsync -a .[^.]* .. 
           cd ..
           rm -rf sing-box
-          tree -a
-          pwd
-          cd ..
-          pwd
-          tree -a
           
 
       - name: ex_build
         run: |
           pwd
-          gh workflow run build.yml
+          gh workflow list
 
 
 #      - name: Rename sing-box to VTBox
