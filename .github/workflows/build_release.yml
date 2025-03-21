@@ -73,7 +73,7 @@ jobs:
           tree -a
 
   fst:
-  uses: ./github/workflows/ex_build.yml
+    uses: ./github/workflows/ex_build.yml
 
 
 #      - name: Rename sing-box to VTBox
