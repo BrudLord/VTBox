@@ -71,9 +71,8 @@ jobs:
           cd ..
           rm -rf sing-box
           tree -a
-
-      - name: Call ex_build workflow
-        uses: ./.github/workflows/ex_build.yml
+  ex_build:
+    uses: ./.github/workflows/ex_build.yml
 
 
 #      - name: Rename sing-box to VTBox
