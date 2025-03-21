@@ -67,6 +67,7 @@ jobs:
           git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
           rm -rf .git
           mv * ..
+          mv .[^.]* ..
           tree -a
           cd ..
           rm -rf sing-box
