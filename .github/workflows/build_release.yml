@@ -68,9 +68,9 @@ jobs:
           rm -rf .git
           mv * ..
           rsync -a .[^.]* .. 
-          tree -a
           cd ..
           rm -rf sing-box
+          tree -a
           
 
       - name: ex_build
