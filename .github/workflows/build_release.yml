@@ -72,6 +72,9 @@ jobs:
           rm -rf sing-box
           tree -a
           pwd
+          cd ..
+          pwd
+          tree -a
           
 
       - name: ex_build
