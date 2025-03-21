@@ -66,12 +66,13 @@ jobs:
           cd sing-box
           git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
           rm -rf .git
-          mv * ..
-          tree -a
+          shopt -s dotglob  # Включаем поддержку скрытых файлов
+          mv -f * ..        # Перемещаем файлы, принудительно перезаписывая существующие
+          mv -f .[^.]* ..   # Перемещаем скрытые файлы, включая их перезапись
           cd ..
-          tree -a
           rm -rf sing-box
-          
+    
+      
 
       - name: ex_build
         run: |
