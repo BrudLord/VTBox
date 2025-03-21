@@ -76,7 +76,7 @@ jobs:
       - name: ex_build
         run: |
           pwd
-          gh workflow ex_build.yml
+          gh workflow run ex_build.yml
 
 
 #      - name: Rename sing-box to VTBox
