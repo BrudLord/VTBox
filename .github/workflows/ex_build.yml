@@ -2,6 +2,7 @@ name: Imagin that it is build from sing-box
 
 on:
   workflow_call:
+  workflow_dispatch:
 
 
 jobs:
