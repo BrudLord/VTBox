@@ -79,7 +79,6 @@ jobs:
           path: VTBox
           key: VTBox-${{ vars.LAST_SING_BOX_RELEASE }}
 
-      - name: ex_build
-        run: |
-          pwd
-          gh workflow run ex_build.yml
+
+  ex_build:
+    uses: ./.github/workflows/ex_build.yml
