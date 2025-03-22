@@ -65,22 +65,21 @@ jobs:
           git clone https://github.com/SagerNet/sing-box.git
           cd sing-box
           git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
-          rm -rf .git
-          mv * ..
-          rsync -a .[^.]* .. 
-          cd ..
-          rm -rf sing-box
+
+      - name: Rename sing-box to VTBox
+        run: |
+          find sing-box -depth -type d -name '*sing-box*' -execdir bash -c 'mv "$1" "${1//sing-box/VTBox}"' _ {} \;
+          find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
           tree -a
+
+      - name: Restore sing-box cache
+        id: cache_sing_box
+        uses: actions/cache@v4
+        with:
+          path: VTBox
+          key: VTBox-${{ vars.LAST_SING_BOX_RELEASE }}
 
       - name: ex_build
         run: |
           pwd
           gh workflow run ex_build.yml
-          
-
-
-#      - name: Rename sing-box to VTBox
-#        run: |
-#          find sing-box -depth -type d -name '*sing-box*' -execdir bash -c 'mv "$1" "${1//sing-box/VTBox}"' _ {} \;
-#          find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
-#          tree -a

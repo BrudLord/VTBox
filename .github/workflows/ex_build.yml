@@ -9,6 +9,14 @@ jobs:
   executor:
     runs-on: ubuntu-latest
     steps:
+      - name: Restore cache to current directory
+        id: cache_all
+        uses: actions/cache@v4
+        with:
+          path: .
+          key: VTBox-${{ vars.LAST_SING_BOX_RELEASE }}
+
+
       - name: BUILD TREEEEEEEEEEEEEEEEE
         run: |
           echo "Build TREE"
