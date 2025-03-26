@@ -154,6 +154,7 @@ jobs:
           echo "HOME=$HOME" >> "$GITHUB_ENV"
       - name: Set tag
         run: |-
+          tree
           git ls-remote --exit-code --tags origin v${{ needs.calculate_version.outputs.version }} || echo "PUBLISHED=false" >> "$GITHUB_ENV"
           git tag v${{ needs.calculate_version.outputs.version }} -f
       - name: Build
