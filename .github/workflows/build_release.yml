@@ -5,6 +5,27 @@ on:
     # Every tuesday at 10
     - cron: '0 10 * * 2'
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Version name"
+        required: true
+        type: string
+      build:
+        description: "Build type"
+        required: true
+        type: choice
+        default: "All"
+        options:
+          - All
+          - Binary
+          - Android
+          - Apple
+          - app-store
+          - iOS
+          - macOS
+          - tvOS
+          - macOS-standalone
+          - publish-android
   push:
     branches:
       - main
