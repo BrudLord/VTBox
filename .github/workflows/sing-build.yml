@@ -24,6 +24,14 @@ jobs:
         with:
           path: VTBox
           key: VTBox-${{ vars.LAST_SING_BOX_RELEASE }}
+      - name: Rename
+        run: |-
+          rm -rf .git
+          mv * ..
+          rsync -a .[^.]* .. 
+          cd ..
+          rm -rf VTBox
+          tree -a
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
@@ -36,7 +44,6 @@ jobs:
       - name: Calculate version
         if: github.event_name != 'workflow_dispatch'
         run: |-
-          tree
           go run -v ./VTBox/cmd/internal/read_tag --ci --nightly
       - name: Set outputs
         id: outputs
