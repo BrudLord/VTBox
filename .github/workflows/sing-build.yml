@@ -152,11 +152,20 @@ jobs:
           ${{ secrets.GPG_KEY }}
           EOF
           echo "HOME=$HOME" >> "$GITHUB_ENV"
-      - name: Set tag
+      - name: Use cache
+        id: cache_all
+        uses: actions/cache@v4
+        with:
+          path: VTBox
+          key: VTBox-${{ vars.LAST_SING_BOX_RELEASE }}
+      - name: Rename
         run: |-
-          tree
-          git ls-remote --exit-code --tags origin v${{ needs.calculate_version.outputs.version }} || echo "PUBLISHED=false" >> "$GITHUB_ENV"
-          git tag v${{ needs.calculate_version.outputs.version }} -f
+          cd VTBox
+          rm -rf .git
+          mv * ..
+          rsync -a .[^.]* .. 
+          cd ..
+          rm -rf VTBox
       - name: Build
         if: matrix.goos != 'android'
         run: |-
