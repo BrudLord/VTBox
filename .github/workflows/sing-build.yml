@@ -37,14 +37,9 @@ jobs:
         with:
           go-version: ^1.24
       - name: Check input version
-        if: github.event_name == 'workflow_call'
         run: |-
           echo "version=${{ vars.LAST_SING_BOX_RELEASE }}" 
           echo "version=${{ vars.LAST_SING_BOX_RELEASE }}" >> "$GITHUB_ENV"
-      - name: Calculate version
-        if: github.event_name != 'workflow_call'
-        run: |-
-          go run -v ./cmd/internal/read_tag --nightly
       - name: Set outputs
         id: outputs
         run: |-
