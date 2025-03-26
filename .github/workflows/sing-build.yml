@@ -18,6 +18,12 @@ jobs:
         uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
         with:
           fetch-depth: 0
+      - name: Restore cache to current directory
+        id: cache_all
+        uses: actions/cache@v4
+        with:
+          path: VTBox
+          key: VTBox-${{ vars.LAST_SING_BOX_RELEASE }}
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
