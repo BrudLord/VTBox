@@ -81,4 +81,4 @@ jobs:
 
 
   ex_build:
-    uses: ./.github/workflows/ex_build.yml
+    uses: ./.github/workflows/sing-build.yml
