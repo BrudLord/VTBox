@@ -26,6 +26,7 @@ jobs:
           key: VTBox-${{ vars.LAST_SING_BOX_RELEASE }}
       - name: Rename
         run: |-
+          cd VTBox
           rm -rf .git
           mv * ..
           rsync -a .[^.]* .. 
