@@ -143,6 +143,7 @@ jobs:
       - name: Build Android
         if: matrix.os == 'android'
         run: |
+          tree
           set -xeuo pipefail
           go install -v ./cmd/internal/build
           export CC='${{ matrix.ndk }}-clang'
