@@ -1,32 +1,8 @@
 name: Build
 
+
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: "Version name"
-        required: true
-        type: string
-      build:
-        description: "Build type"
-        required: true
-        type: choice
-        default: "All"
-        options:
-          - All
-          - Binary
-          - Android
-          - Apple
-          - app-store
-          - iOS
-          - macOS
-          - tvOS
-          - macOS-standalone
-          - publish-android
-  push:
-    branches:
-      - main-next
-      - dev-next
+  workflow_call:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}-${{ inputs.build }}
