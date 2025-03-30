@@ -103,3 +103,5 @@ jobs:
 
   ex_build:
     uses: ./.github/workflows/build.yml
+    needs:
+      - create_release
