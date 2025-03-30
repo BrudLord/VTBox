@@ -19,19 +19,28 @@ jobs:
         uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
         with:
           fetch-depth: 0
+      - name: Restore cache to current directory
+        id: cache_all
+        uses: actions/cache@v4
+        with:
+          path: VTBox
+          key: VTBox-${{ vars.LAST_SING_BOX_RELEASE }}
+      - name: Rename
+        run: |-
+          cd VTBox
+          rm -rf .git
+          mv * ..
+          rsync -a .[^.]* .. 
+          cd ..
+          rm -rf VTBox
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
           go-version: ^1.24
-      - name: Check input version
-        if: github.event_name == 'workflow_dispatch'
+      - name: Write version
         run: |-
-          echo "version=${{ inputs.version }}"
-          echo "version=${{ inputs.version }}" >> "$GITHUB_ENV"
-      - name: Calculate version
-        if: github.event_name != 'workflow_dispatch'
-        run: |-
-          go run -v ./cmd/internal/read_tag --ci --nightly
+          echo "version=${{ vars.LAST_SING_BOX_RELEASE }}" 
+          echo "version=${{ vars.LAST_SING_BOX_RELEASE }}" >> "$GITHUB_ENV"
       - name: Set outputs
         id: outputs
         run: |-
@@ -75,6 +84,20 @@ jobs:
         uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
         with:
           fetch-depth: 0
+      - name: Restore cache to current directory
+        id: cache_all
+        uses: actions/cache@v4
+        with:
+          path: VTBox
+          key: VTBox-${{ vars.LAST_SING_BOX_RELEASE }}
+      - name: Rename
+        run: |-
+          cd VTBox
+          rm -rf .git
+          mv * ..
+          rsync -a .[^.]* .. 
+          cd ..
+          rm -rf VTBox
       - name: Setup Go
         if: matrix.legacy_go
         uses: actions/setup-go@v5
@@ -224,6 +247,20 @@ jobs:
         with:
           fetch-depth: 0
           submodules: 'recursive'
+      - name: Restore cache to current directory
+        id: cache_all
+        uses: actions/cache@v4
+        with:
+          path: VTBox
+          key: VTBox-${{ vars.LAST_SING_BOX_RELEASE }}
+      - name: Rename
+        run: |-
+          cd VTBox
+          rm -rf .git
+          mv * ..
+          rsync -a .[^.]* .. 
+          cd ..
+          rm -rf VTBox
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
