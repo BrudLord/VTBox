@@ -172,7 +172,7 @@ jobs:
           PKG_VERSION="${PKG_VERSION//-/\~}"
           echo "PKG_VERSION=${PKG_VERSION}" >> "${GITHUB_ENV}"
       - name: Package DEB
-        if: matrix.debian != ''
+        if: false #matrix.debian != ''
         run: |
           set -xeuo pipefail
           sudo gem install fpm
@@ -319,6 +319,7 @@ jobs:
         run: |-
           mkdir clients/android/app/libs
           cp libbox.aar clients/android/app/libs
+          cp -f .github/workflows/release.keystore clients/android/app/release.keystore
           cd clients/android
           ./gradlew :app:assemblePlayRelease :app:assembleOtherRelease
         env:
