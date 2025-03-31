@@ -27,6 +27,7 @@ jobs:
           key: VTBox-${{ vars.LAST_SING_BOX_RELEASE }}
       - name: Rename
         run: |-
+          tree -a
           cd VTBox
           rm -rf .git
           mv * ..
