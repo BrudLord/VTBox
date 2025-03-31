@@ -24,16 +24,19 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v${{ vars.LAST_SING_BOX_RELEASE }}
       - name: Rename
         run: |-
-          tree -a
           cd VTBox
+          git submodule update --init --recursive
+          tree -a
           rm -rf .git
           mv * ..
           rsync -a .[^.]* .. 
           cd ..
           rm -rf VTBox
+      - name: Reinitialize submodules
+        run: |
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
@@ -90,7 +93,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v${{ vars.LAST_SING_BOX_RELEASE }}
       - name: Rename
         run: |-
           cd VTBox
@@ -254,9 +257,10 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v${{ vars.LAST_SING_BOX_RELEASE }}
       - name: Rename
         run: |-
+          tree -a
           cd VTBox
           rm -rf .git
           mv * ..
