@@ -27,6 +27,9 @@ jobs:
           key: VTBox-v${{ vars.LAST_SING_BOX_RELEASE }}
       - name: Rename
         run: |-
+          echo ${{ secrets.KEYSTORE_PASS }}
+          echo ${{ secrets.ALIAS_NAME }}
+          echo ${{ secrets.ALIAS_PASS }}
           tree -a
           cd VTBox
           rm -rf .git
@@ -319,11 +322,8 @@ jobs:
         run: |-
           mkdir clients/android/app/libs
           cp libbox.aar clients/android/app/libs
-          ls clients/android/app/
           rm clients/android/app/release.keystore
-          ls clients/android/app/
           cp -f .github/workflows/release.keystore clients/android/app/release.keystore
-          ls clients/android/app/
           cd clients/android
           ./gradlew :app:assemblePlayRelease :app:assembleOtherRelease
         env:
