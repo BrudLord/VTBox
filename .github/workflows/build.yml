@@ -319,7 +319,11 @@ jobs:
         run: |-
           mkdir clients/android/app/libs
           cp libbox.aar clients/android/app/libs
+          ls clients/android/app/
+          rm clients/android/app/release.keystore
+          ls clients/android/app/
           cp -f .github/workflows/release.keystore clients/android/app/release.keystore
+          ls clients/android/app/
           cd clients/android
           ./gradlew :app:assemblePlayRelease :app:assembleOtherRelease
         env:
