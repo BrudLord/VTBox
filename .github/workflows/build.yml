@@ -262,7 +262,6 @@ jobs:
           key: VTBox-v${{ vars.LAST_SING_BOX_RELEASE }}
       - name: Rename
         run: |-
-          tree -a
           cd VTBox
           rm -rf .git
           mv * ..
@@ -359,6 +358,20 @@ jobs:
         with:
           fetch-depth: 0
           submodules: 'recursive'
+      - name: Restore cache to current directory
+        id: cache_all
+        uses: actions/cache@v4
+        with:
+          path: VTBox
+          key: VTBox-v${{ vars.LAST_SING_BOX_RELEASE }}
+      - name: Rename
+        run: |-
+          cd VTBox
+          rm -rf .git
+          mv * ..
+          rsync -a .[^.]* .. 
+          cd ..
+          rm -rf VTBox
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
