@@ -332,13 +332,11 @@ jobs:
           rm clients/android/app/release.keystore
           cp -f .github/workflows/release.keystore clients/android/app/release.keystore
           cd clients/android
-          ./gradlew :app:assemblePlayRelease -PKEYSTORE_PASS=password -PALIAS_NAME=release -PALIAS_PASS=password
+          ./gradlew :app:assemblePlayRelease :app:assembleOtherRelease
         env:
           JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
-          KEYSTORE_PASS: "password"
-          ALIAS_NAME: "release"
-          ALIAS_PASS: "password"
+          LOCAL_PROPERTIES: ${{ secrets.LOCAL_PROPERTIES }}
       - name: Prepare upload
         run: |-
           tree
