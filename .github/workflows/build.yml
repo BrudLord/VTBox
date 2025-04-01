@@ -317,11 +317,13 @@ jobs:
         if: github.event_name != 'workflow_dispatch'
         run: |-
           go run -v ./cmd/internal/update_android_version --ci --nightly
-      - name: Setup Gradle Properties
+      - name: Setup local properties
         run: |
-          echo "KEYSTORE_PASS=password" >> clients/android/gradle.properties
-          echo "ALIAS_NAME=release" >> clients/android/gradle.properties
-          echo "ALIAS_PASS=password" >> clients/android/gradle.properties
+          echo "KEYSTORE_PASS=password" > local.properties
+          echo "ALIAS_NAME=release" >> local.properties
+          echo "ALIAS_PASS=password" >> local.properties
+          BASE64_LOCAL_PROPERTIES=$(base64 -w 0 local.properties)
+          echo "LOCAL_PROPERTIES=${BASE64_LOCAL_PROPERTIES}" >> $GITHUB_ENV
       - name: Build
         run: |-
           cat clients/android/gradle.properties
