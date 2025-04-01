@@ -328,9 +328,9 @@ jobs:
         env:
           JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
-          KEYSTORE_PASS: "VTBox is the product number 1"
-          ALIAS_NAME: "VTBoxAndroidRelease"
-          ALIAS_PASS: "VTBox is the product number 1"
+          KEYSTORE_PASS: "password"
+          ALIAS_NAME: "release"
+          ALIAS_PASS: "password"
       - name: Prepare upload
         run: |-
           mkdir -p dist
