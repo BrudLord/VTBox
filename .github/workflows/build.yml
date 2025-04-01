@@ -175,7 +175,7 @@ jobs:
           PKG_VERSION="${PKG_VERSION//-/\~}"
           echo "PKG_VERSION=${PKG_VERSION}" >> "${GITHUB_ENV}"
       - name: Package DEB
-        if: false #matrix.debian != ''
+        if: matrix.debian != ''
         run: |
           set -xeuo pipefail
           sudo gem install fpm
