@@ -317,8 +317,14 @@ jobs:
         if: github.event_name != 'workflow_dispatch'
         run: |-
           go run -v ./cmd/internal/update_android_version --ci --nightly
+      - name: Setup Gradle Properties
+        run: |
+          echo "KEYSTORE_PASS=password" >> clients/android/gradle.properties
+          echo "ALIAS_NAME=release" >> clients/android/gradle.properties
+          echo "ALIAS_PASS=password" >> clients/android/gradle.properties
       - name: Build
         run: |-
+          cat clients/android/gradle.properties
           mkdir clients/android/app/libs
           cp libbox.aar clients/android/app/libs
           rm clients/android/app/release.keystore
