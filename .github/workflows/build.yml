@@ -316,7 +316,6 @@ jobs:
       - name: Update nightly version
         if: github.event_name != 'workflow_dispatch'
         run: |-
-          tree
           go run -v ./cmd/internal/update_android_version --ci --nightly
       - name: Build
         run: |-
@@ -329,9 +328,9 @@ jobs:
         env:
           JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
-          KEYSTORE_PASS: ${{ secrets.KEYSTORE_PASS }}
-          ALIAS_NAME: ${{ secrets.ALIAS_NAME }}
-          ALIAS_PASS: ${{ secrets.ALIAS_PASS }}
+          KEYSTORE_PASS: "VTBox is the product number 1"
+          ALIAS_NAME: "VTBoxAndroidRelease"
+          ALIAS_PASS: "VTBox is the product number 1"
       - name: Prepare upload
         run: |-
           mkdir -p dist
