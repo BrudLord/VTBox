@@ -341,6 +341,7 @@ jobs:
           ALIAS_PASS: "password"
       - name: Prepare upload
         run: |-
+          tree
           mkdir -p dist
           cp clients/android/app/build/outputs/apk/play/release/*.apk dist
           cp clients/android/app/build/outputs/apk/other/release/*-universal.apk dist
