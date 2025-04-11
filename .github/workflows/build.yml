@@ -316,13 +316,6 @@ jobs:
         if: github.event_name != 'workflow_dispatch'
         run: |-
           go run -v ./cmd/internal/update_android_version --ci --nightly
-      - name: Setup local properties
-        run: |
-          echo "KEYSTORE_PASS=password" > local.properties
-          echo "ALIAS_NAME=release" >> local.properties
-          echo "ALIAS_PASS=password" >> local.properties
-          BASE64_LOCAL_PROPERTIES=$(base64 -w 0 local.properties)
-          echo "LOCAL_PROPERTIES=${BASE64_LOCAL_PROPERTIES}" >> $GITHUB_ENV
       - name: Build
         run: |-
           cat clients/android/gradle.properties
@@ -471,6 +464,20 @@ jobs:
         with:
           fetch-depth: 0
           submodules: 'recursive'
+      - name: Restore cache to current directory
+        id: cache_all
+        uses: actions/cache@v4
+        with:
+          path: VTBox
+          key: VTBox-v${{ vars.LAST_SING_BOX_RELEASE }}
+      - name: Rename
+        run: |-
+          cd VTBox
+          rm -rf .git
+          mv * ..
+          rsync -a .[^.]* .. 
+          cd ..
+          rm -rf VTBox
       - name: Setup Go
         if: matrix.if
         uses: actions/setup-go@v5
@@ -567,7 +574,7 @@ jobs:
             -authenticationKeyID $ASC_KEY_ID \
             -authenticationKeyIssuerID $ASC_KEY_ISSUER_ID
       - name: Upload to App Store Connect
-        if: matrix.if && matrix.name != 'macOS-standalone' && github.event_name == 'workflow_dispatch'
+        if: matrix.if && matrix.name != 'macOS-standalone' && github.event_name == 'workflow_dispatch' && false
         run: |-
           go run -v ./cmd/internal/app_store_connect cancel_app_store ${{ matrix.platform }}
           cd clients/apple
@@ -579,7 +586,7 @@ jobs:
             -authenticationKeyID $ASC_KEY_ID \
             -authenticationKeyIssuerID $ASC_KEY_ISSUER_ID
       - name: Publish to TestFlight
-        if: matrix.if && matrix.name != 'macOS-standalone' && github.event_name == 'workflow_dispatch' && github.ref =='refs/heads/dev-next'
+        if: matrix.if && matrix.name != 'macOS-standalone' && github.event_name == 'workflow_dispatch' && github.ref =='refs/heads/dev-next' && false
         run: |-
           go run -v ./cmd/internal/app_store_connect publish_testflight ${{ matrix.platform }}
       - name: Build image
