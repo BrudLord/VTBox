@@ -333,8 +333,10 @@ jobs:
         run: |-
           tree
           mkdir -p dist
-          cp clients/android/app/build/outputs/apk/play/release/*.apk dist
-          cp clients/android/app/build/outputs/apk/other/release/*-universal.apk dist
+          # cp clients/android/app/build/outputs/apk/play/release/*.apk dist
+          # cp clients/android/app/build/outputs/apk/other/release/*-universal.apk dist
+          cp clients/android/app/build/outputs/bundle/otherRelease/*.aab dist
+          cp clients/android/app/build/outputs/bundle/playRelease/*.aab dist
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
