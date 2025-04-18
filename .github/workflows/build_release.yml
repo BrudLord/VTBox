@@ -89,7 +89,7 @@ jobs:
           echo ${{ secrets.ALIAS_PASS }}
           git clone --recurse-submodules https://github.com/SagerNet/sing-box.git
           cd sing-box
-          git checkout "v1.11.7"
+          git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
 
       - name: Rename sing-box to VTBox
         run: |
@@ -104,6 +104,7 @@ jobs:
           sed -i '/<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
           sed -i '/<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
           sed -i '/<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
+          sed -i '/<uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
           sed -i '/QUERY_ALL_PACKAGES/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
           sed -i '/QueryAllPackagesPermission/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
           sed -i '/<uses-permission$/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
