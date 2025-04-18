@@ -94,6 +94,7 @@ jobs:
         run: |
           find sing-box -depth -name '*sing-box*' -execdir bash -c 'mv "$1" "${1//sing-box/VTBox}"' _ {} \;
           find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
+          find VTBox -type f -exec sed -i 's/io.nekohasekai.sfa/io.vtbox.nekohasekai.sfa/g' {} +
           tree -a
 
       - name: Restore sing-box cache
