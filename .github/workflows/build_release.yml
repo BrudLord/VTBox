@@ -100,10 +100,10 @@ jobs:
           tree -a
           
           # Удаление указанных разрешений из AndroidManifest.xml
-          sed -i '/<uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
-          sed -i '/<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
-          sed -i '/<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
-          sed -i '/<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
+          sed -i '/<uses-permission[[:space:]]*android:name="android.permission.QUERY_ALL_PACKAGES"[[:space:]]*tools:ignore="QueryAllPackagesPermission"[[:space:]]*\/>/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
+          sed -i '/<uses-permission[[:space:]]*android:name="android.permission.ACCESS_COARSE_LOCATION"[[:space:]]*\/>/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
+          sed -i '/<uses-permission[[:space:]]*android:name="android.permission.ACCESS_FINE_LOCATION"[[:space:]]*\/>/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
+          sed -i '/<uses-permission[[:space:]]*android:name="android.permission.ACCESS_BACKGROUND_LOCATION"[[:space:]]*\/>/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
           cat VTBox/clients/android/app/src/main/AndroidManifest.xml
 
       - name: Restore sing-box cache
@@ -111,7 +111,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-vvvv${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-vvvvv${{ vars.LAST_SING_BOX_RELEASE }}
 
 
   ex_build:
