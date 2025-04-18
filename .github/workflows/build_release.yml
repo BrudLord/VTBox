@@ -36,6 +36,7 @@ concurrency:
 
 jobs:
   check_release:
+    if: false
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -114,7 +115,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-v5${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v${{ vars.LAST_SING_BOX_RELEASE }}
 
 
   ex_build:
