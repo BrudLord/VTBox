@@ -95,6 +95,7 @@ jobs:
           find sing-box -depth -name '*sing-box*' -execdir bash -c 'mv "$1" "${1//sing-box/VTBox}"' _ {} \;
           find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
           find VTBox -type f -exec sed -i 's/io.nekohasekai.sfa/io.vtbox.nekohasekai.sfa/g' {} +
+          cat VTBox/clients/android/app/build.gradle
           tree -a
 
       - name: Restore sing-box cache
@@ -102,7 +103,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-v${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-vv${{ vars.LAST_SING_BOX_RELEASE }}
 
 
   ex_build:
