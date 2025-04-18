@@ -100,7 +100,7 @@ jobs:
           tree -a
           
           # Удаление указанных разрешений из AndroidManifest.xml
-          sed -i '/<uses-permission[[:space:]]*android:name="android.permission.QUERY_ALL_PACKAGES"[[:space:]]*tools:ignore="QueryAllPackagesPermission"[[:space:]]*\/>/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
+          sed -i '/<uses-permission.*android:name="android.permission.QUERY_ALL_PACKAGES".*tools:ignore="QueryAllPackagesPermission"[[:space:]]*\/>/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
           sed -i '/<uses-permission[[:space:]]*android:name="android.permission.ACCESS_COARSE_LOCATION"[[:space:]]*\/>/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
           sed -i '/<uses-permission[[:space:]]*android:name="android.permission.ACCESS_FINE_LOCATION"[[:space:]]*\/>/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
           sed -i '/<uses-permission[[:space:]]*android:name="android.permission.ACCESS_BACKGROUND_LOCATION"[[:space:]]*\/>/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
