@@ -98,6 +98,13 @@ jobs:
           find VTBox -type f -exec sed -i 's/nekohasekai/vtbox/g' {} +
           cat VTBox/clients/android/app/build.gradle
           tree -a
+          
+          # Удаление указанных разрешений из AndroidManifest.xml
+          sed -i '/<uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
+          sed -i '/<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
+          sed -i '/<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
+          sed -i '/<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
+          cat VTBox/clients/android/app/src/main/AndroidManifest.xml
 
       - name: Restore sing-box cache
         id: cache_sing_box
