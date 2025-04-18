@@ -89,7 +89,7 @@ jobs:
           echo ${{ secrets.ALIAS_PASS }}
           git clone --recurse-submodules https://github.com/SagerNet/sing-box.git
           cd sing-box
-          git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
+          git checkout "v1.11.7"
 
       - name: Rename sing-box to VTBox
         run: |
