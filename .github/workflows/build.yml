@@ -259,7 +259,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-v${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v7${{ vars.LAST_SING_BOX_RELEASE }}
       - name: Rename
         run: |-
           cd VTBox
