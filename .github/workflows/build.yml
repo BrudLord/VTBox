@@ -530,7 +530,7 @@ jobs:
           cp $PROFILES_ZIP_PATH "$PROFILES_PATH"
 
           ASC_KEY_PATH=$RUNNER_TEMP/Key.p8
-          echo -n "$ASC_KEY" | base64 --decode -o $ASC_KEY_PATH
+          echo -n "$ASC_KEY" | base64 --decode > $ASC_KEY_PATH
 
           xcrun notarytool store-credentials "notarytool-password" \
             --key $ASC_KEY_PATH \
