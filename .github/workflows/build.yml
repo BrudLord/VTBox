@@ -536,7 +536,7 @@ jobs:
             --key $ASC_KEY_PATH \
             --key-id $ASC_KEY_ID \
             --issuer $ASC_KEY_ISSUER_ID
-#
+
 #          echo "ASC_KEY_PATH=$ASC_KEY_PATH" >> "$GITHUB_ENV"
 #          echo "ASC_KEY_ID=$ASC_KEY_ID" >> "$GITHUB_ENV"
 #          echo "ASC_KEY_ISSUER_ID=$ASC_KEY_ISSUER_ID" >> "$GITHUB_ENV"
