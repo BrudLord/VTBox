@@ -110,7 +110,9 @@ jobs:
           sed -i '/<uses-permission$/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
           
           # Rewrite team id
-          find VTBox -depth -name '*287TTNZF8L*' -execdir bash -c 'mv "$1" "${1//287TTNZF8L/F6CHJX72K5}"' _ {} \;        
+          find VTBox -depth -name '*287TTNZF8L*' -execdir bash -c 'mv "$1" "${1//287TTNZF8L/F6CHJX72K5}"' _ {} \;     
+          
+          cat VTBox/clients/apple/VTBox.xcodeproj
           
           cat VTBox/clients/android/app/src/main/AndroidManifest.xml
 
