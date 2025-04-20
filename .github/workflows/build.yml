@@ -532,10 +532,10 @@ jobs:
           ASC_KEY_PATH=$RUNNER_TEMP/Key.p12
           echo -n "$ASC_KEY" | base64 --decode -o $ASC_KEY_PATH
 
-#          xcrun notarytool store-credentials "notarytool-password" \
-#            --key $ASC_KEY_PATH \
-#            --key-id $ASC_KEY_ID \
-#            --issuer $ASC_KEY_ISSUER_ID
+          xcrun notarytool store-credentials "notarytool-password" \
+            --key $ASC_KEY_PATH \
+            --key-id $ASC_KEY_ID \
+            --issuer $ASC_KEY_ISSUER_ID
 #
 #          echo "ASC_KEY_PATH=$ASC_KEY_PATH" >> "$GITHUB_ENV"
 #          echo "ASC_KEY_ID=$ASC_KEY_ID" >> "$GITHUB_ENV"
