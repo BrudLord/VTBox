@@ -576,7 +576,7 @@ jobs:
             -authenticationKeyID $ASC_KEY_ID \
             -authenticationKeyIssuerID $ASC_KEY_ISSUER_ID
       - name: Upload to App Store Connect
-        if: matrix.if && matrix.name != 'macOS-standalone' && github.event_name == 'workflow_dispatch' && false
+        if: false && matrix.if && matrix.name != 'macOS-standalone' && github.event_name == 'workflow_dispatch' && false
         run: |-
           go run -v ./cmd/internal/app_store_connect cancel_app_store ${{ matrix.platform }}
           cd clients/apple
@@ -588,7 +588,7 @@ jobs:
             -authenticationKeyID $ASC_KEY_ID \
             -authenticationKeyIssuerID $ASC_KEY_ISSUER_ID
       - name: Publish to TestFlight
-        if: matrix.if && matrix.name != 'macOS-standalone' && github.event_name == 'workflow_dispatch' && github.ref =='refs/heads/dev-next' && false
+        if: false && matrix.if && matrix.name != 'macOS-standalone' && github.event_name == 'workflow_dispatch' && github.ref =='refs/heads/dev-next' && false
         run: |-
           go run -v ./cmd/internal/app_store_connect publish_testflight ${{ matrix.platform }}
       - name: Build image
