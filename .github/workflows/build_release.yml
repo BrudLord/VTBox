@@ -112,7 +112,7 @@ jobs:
           # Rewrite team id
           find VTBox -depth -name '*287TTNZF8L*' -execdir bash -c 'mv "$1" "${1//287TTNZF8L/F6CHJX72K5}"' _ {} \;     
           
-          cat VTBox/clients/apple/VTBox.xcodeproj
+          cat VTBox/clients/apple/VTBox.xcodeproj/project.pbxproj
           
           cat VTBox/clients/android/app/src/main/AndroidManifest.xml
 
