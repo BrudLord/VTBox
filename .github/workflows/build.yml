@@ -532,14 +532,14 @@ jobs:
           ASC_KEY_PATH=$RUNNER_TEMP/Key.p12
           echo -n "$ASC_KEY" | base64 --decode -o $ASC_KEY_PATH
 
-          xcrun notarytool store-credentials "notarytool-password" \
-            --key $ASC_KEY_PATH \
-            --key-id $ASC_KEY_ID \
-            --issuer $ASC_KEY_ISSUER_ID
-
-          echo "ASC_KEY_PATH=$ASC_KEY_PATH" >> "$GITHUB_ENV"
-          echo "ASC_KEY_ID=$ASC_KEY_ID" >> "$GITHUB_ENV"
-          echo "ASC_KEY_ISSUER_ID=$ASC_KEY_ISSUER_ID" >> "$GITHUB_ENV"
+#          xcrun notarytool store-credentials "notarytool-password" \
+#            --key $ASC_KEY_PATH \
+#            --key-id $ASC_KEY_ID \
+#            --issuer $ASC_KEY_ISSUER_ID
+#
+#          echo "ASC_KEY_PATH=$ASC_KEY_PATH" >> "$GITHUB_ENV"
+#          echo "ASC_KEY_ID=$ASC_KEY_ID" >> "$GITHUB_ENV"
+#          echo "ASC_KEY_ISSUER_ID=$ASC_KEY_ISSUER_ID" >> "$GITHUB_ENV"
         env:
           CERTIFICATES_P12: ${{ secrets.CERTIFICATES_P12 }}
           P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
@@ -548,80 +548,80 @@ jobs:
           ASC_KEY: ${{ secrets.ASC_KEY }}
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_KEY_ISSUER_ID: ${{ secrets.ASC_KEY_ISSUER_ID }}
-      - name: Build library
-        if: matrix.if
-        run: |-
-          make lib_install
-          export PATH="$PATH:$(go env GOPATH)/bin"
-          go run ./cmd/internal/build_libbox -target apple -platform ${{ matrix.platform }}
-          mv Libbox.xcframework clients/apple
-      - name: Update macOS version
-        if: matrix.if && matrix.name == 'macOS' && github.event_name == 'workflow_dispatch'
-        run: |-
-          MACOS_PROJECT_VERSION=$(go run -v ./cmd/internal/app_store_connect next_macos_project_version)
-          echo "MACOS_PROJECT_VERSION=$MACOS_PROJECT_VERSION"
-          echo "MACOS_PROJECT_VERSION=$MACOS_PROJECT_VERSION" >> "$GITHUB_ENV"
-      - name: Build
-        if: matrix.if
-        run: |-
-          go run -v ./cmd/internal/update_apple_version --ci
-          cd clients/apple
-          xcodebuild archive \
-            -scheme "${{ matrix.scheme }}" \
-            -configuration Release \
-            -destination "${{ matrix.destination }}" \
-            -archivePath "${{ matrix.archive }}" \
-            -allowProvisioningUpdates \
-            -authenticationKeyPath $ASC_KEY_PATH \
-            -authenticationKeyID $ASC_KEY_ID \
-            -authenticationKeyIssuerID $ASC_KEY_ISSUER_ID
-      - name: Upload to App Store Connect
-        if: false && matrix.if && matrix.name != 'macOS-standalone' && github.event_name == 'workflow_dispatch' && false
-        run: |-
-          go run -v ./cmd/internal/app_store_connect cancel_app_store ${{ matrix.platform }}
-          cd clients/apple
-          xcodebuild -exportArchive \
-            -archivePath "${{ matrix.archive }}" \
-            -exportOptionsPlist ${{ matrix.upload }} \
-            -allowProvisioningUpdates \
-            -authenticationKeyPath $ASC_KEY_PATH \
-            -authenticationKeyID $ASC_KEY_ID \
-            -authenticationKeyIssuerID $ASC_KEY_ISSUER_ID
-      - name: Publish to TestFlight
-        if: false && matrix.if && matrix.name != 'macOS-standalone' && github.event_name == 'workflow_dispatch' && github.ref =='refs/heads/dev-next' && false
-        run: |-
-          go run -v ./cmd/internal/app_store_connect publish_testflight ${{ matrix.platform }}
-      - name: Build image
-        if: matrix.if && matrix.name == 'macOS-standalone' && github.event_name == 'workflow_dispatch'
-        run: |-
-          pushd clients/apple
-          xcodebuild -exportArchive \
-          	-archivePath "${{ matrix.archive }}" \
-          	-exportOptionsPlist ${{ matrix.export }} \
-          	-exportPath "${{ matrix.export_path }}"
-          brew install create-dmg
-          create-dmg \
-          	--volname "VTBox" \
-          	--volicon "${{ matrix.export_path }}/SFM.app/Contents/Resources/AppIcon.icns" \
-          	--icon "SFM.app" 0 0 \
-          		--hide-extension "SFM.app" \
-          		--app-drop-link 0 0 \
-          		--skip-jenkins \
-          	SFM.dmg "${{ matrix.export_path }}/SFM.app"
-          xcrun notarytool submit "SFM.dmg" --wait --keychain-profile "notarytool-password"          
-          cd "${{ matrix.archive }}"
-          zip -r SFM.dSYMs.zip dSYMs
-          popd
-
-          mkdir -p dist
-          cp clients/apple/SFM.dmg "dist/SFM-${VERSION}-universal.dmg"
-          cp "clients/apple/${{ matrix.archive }}/SFM.dSYMs.zip" "dist/SFM-${VERSION}-universal.dSYMs.zip"
-      - name: Upload image
-        if: matrix.if && matrix.name == 'macOS-standalone' && github.event_name == 'workflow_dispatch'
-        uses: actions/upload-artifact@v4
-        with:
-          name: binary-macos-dmg
-          path: 'dist'
+#      - name: Build library
+#        if: matrix.if
+#        run: |-
+#          make lib_install
+#          export PATH="$PATH:$(go env GOPATH)/bin"
+#          go run ./cmd/internal/build_libbox -target apple -platform ${{ matrix.platform }}
+#          mv Libbox.xcframework clients/apple
+#      - name: Update macOS version
+#        if: matrix.if && matrix.name == 'macOS' && github.event_name == 'workflow_dispatch'
+#        run: |-
+#          MACOS_PROJECT_VERSION=$(go run -v ./cmd/internal/app_store_connect next_macos_project_version)
+#          echo "MACOS_PROJECT_VERSION=$MACOS_PROJECT_VERSION"
+#          echo "MACOS_PROJECT_VERSION=$MACOS_PROJECT_VERSION" >> "$GITHUB_ENV"
+#      - name: Build
+#        if: matrix.if
+#        run: |-
+#          go run -v ./cmd/internal/update_apple_version --ci
+#          cd clients/apple
+#          xcodebuild archive \
+#            -scheme "${{ matrix.scheme }}" \
+#            -configuration Release \
+#            -destination "${{ matrix.destination }}" \
+#            -archivePath "${{ matrix.archive }}" \
+#            -allowProvisioningUpdates \
+#            -authenticationKeyPath $ASC_KEY_PATH \
+#            -authenticationKeyID $ASC_KEY_ID \
+#            -authenticationKeyIssuerID $ASC_KEY_ISSUER_ID
+#      - name: Upload to App Store Connect
+#        if: false && matrix.if && matrix.name != 'macOS-standalone' && github.event_name == 'workflow_dispatch' && false
+#        run: |-
+#          go run -v ./cmd/internal/app_store_connect cancel_app_store ${{ matrix.platform }}
+#          cd clients/apple
+#          xcodebuild -exportArchive \
+#            -archivePath "${{ matrix.archive }}" \
+#            -exportOptionsPlist ${{ matrix.upload }} \
+#            -allowProvisioningUpdates \
+#            -authenticationKeyPath $ASC_KEY_PATH \
+#            -authenticationKeyID $ASC_KEY_ID \
+#            -authenticationKeyIssuerID $ASC_KEY_ISSUER_ID
+#      - name: Publish to TestFlight
+#        if: false && matrix.if && matrix.name != 'macOS-standalone' && github.event_name == 'workflow_dispatch' && github.ref =='refs/heads/dev-next' && false
+#        run: |-
+#          go run -v ./cmd/internal/app_store_connect publish_testflight ${{ matrix.platform }}
+#      - name: Build image
+#        if: matrix.if && matrix.name == 'macOS-standalone' && github.event_name == 'workflow_dispatch'
+#        run: |-
+#          pushd clients/apple
+#          xcodebuild -exportArchive \
+#          	-archivePath "${{ matrix.archive }}" \
+#          	-exportOptionsPlist ${{ matrix.export }} \
+#          	-exportPath "${{ matrix.export_path }}"
+#          brew install create-dmg
+#          create-dmg \
+#          	--volname "VTBox" \
+#          	--volicon "${{ matrix.export_path }}/SFM.app/Contents/Resources/AppIcon.icns" \
+#          	--icon "SFM.app" 0 0 \
+#          		--hide-extension "SFM.app" \
+#          		--app-drop-link 0 0 \
+#          		--skip-jenkins \
+#          	SFM.dmg "${{ matrix.export_path }}/SFM.app"
+#          xcrun notarytool submit "SFM.dmg" --wait --keychain-profile "notarytool-password"
+#          cd "${{ matrix.archive }}"
+#          zip -r SFM.dSYMs.zip dSYMs
+#          popd
+#
+#          mkdir -p dist
+#          cp clients/apple/SFM.dmg "dist/SFM-${VERSION}-universal.dmg"
+#          cp "clients/apple/${{ matrix.archive }}/SFM.dSYMs.zip" "dist/SFM-${VERSION}-universal.dSYMs.zip"
+#      - name: Upload image
+#        if: matrix.if && matrix.name == 'macOS-standalone' && github.event_name == 'workflow_dispatch'
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: binary-macos-dmg
+#          path: 'dist'
   upload:
     name: Upload builds
     runs-on: ubuntu-latest
