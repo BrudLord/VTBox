@@ -111,6 +111,7 @@ jobs:
           
           # Rewrite team id
           find VTBox -type f -exec sed -i 's/287TTNZF8L/F6CHJX72K5/g' {} +
+          find VTBox -type f -exec sed -i 's/Apple Development/Apple Distribution/g' {} +
           
           cat VTBox/clients/apple/VTBox.xcodeproj/project.pbxproj
           
