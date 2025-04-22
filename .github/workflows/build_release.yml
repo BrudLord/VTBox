@@ -115,7 +115,7 @@ jobs:
           find VTBox/clients/apple -type f -exec sed -i 's/io.nekohasekai.sfavt/org.sagernet.vbox/g' {} +
           find VTBox/clients/apple -type f -exec sed -i 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' {} +
           find VTBox/clients/apple -type f -exec sed -i 's/XC io vtbox sfavt system/vbox system provisioning profile/g' {} +
-          find VTBox/clients/apple -type f -exec sed -i 's/XC io vtbox sfavt standalone/vbox system provisioning profile/g' {} +
+          find VTBox/clients/apple -type f -exec sed -i 's/XC io vtbox sfavt standalone/vbox standalone provisioning profile/g' {} +
           
       
           cat VTBox/clients/apple/VTBox.xcodeproj/project.pbxproj
@@ -126,7 +126,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-v12${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v13${{ vars.LAST_SING_BOX_RELEASE }}
 
 
   ex_build:
