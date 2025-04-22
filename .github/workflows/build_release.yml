@@ -110,11 +110,11 @@ jobs:
           sed -i '/<uses-permission$/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
           
           # Rewrite team id
-          find VTBox -type f -exec sed -i 's/287TTNZF8L/F6CHJX72K5/g' {} +
-          find VTBox -type f -exec sed -i 's/Apple Development/Apple Distribution/g' {} +
+          sed -i 's/287TTNZF8L/F6CHJX72K5/g' VTBox/clients/apple/VTBox.xcodeproj/project.pbxproj
+          sed -i 's/Apple Development/Apple Distribution/g' VTBox/clients/apple/VTBox.xcodeproj/project.pbxproj
+          sed -i 's/io.nekohasekai.sfavt/org.sagernet.vbox/g' VTBox/clients/apple/VTBox.xcodeproj/project.pbxproj
           
           cat VTBox/clients/apple/VTBox.xcodeproj/project.pbxproj
-          
           cat VTBox/clients/android/app/src/main/AndroidManifest.xml
 
       - name: Restore sing-box cache
