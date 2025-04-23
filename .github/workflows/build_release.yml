@@ -113,7 +113,7 @@ jobs:
           # find VTBox/clients/apple -type f -exec sed -i 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' {} +
           # find VTBox/clients/apple -type f -exec sed -i 's/Apple Development/Apple Distribution/g' {} +
           # find VTBox/clients/apple -type f -exec sed -i 's/Developer ID Application/Distribution ID Application/g' {} +
-          # find VTBox/clients/apple -type f -exec sed -i 's/io.nekohasekai.sfavt/org.sagernet.vbox/g' {} +
+          find VTBox/clients/apple -type f -exec sed -i 's/io.nekohasekai.sfavt/org.sagernet.vbox/g' {} +
           # find VTBox/clients/apple -type f -exec sed -i 's/XC io nekohasekai sfavt system/vbox system provisioning profile/g' {} +
           # find VTBox/clients/apple -type f -exec sed -i 's/XC io nekohasekai sfavt standalone/vbox standalone provisioning profile/g' {} +
           
@@ -129,7 +129,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-v21${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v22${{ vars.LAST_SING_BOX_RELEASE }}
 
 
   ex_build:
