@@ -96,7 +96,6 @@ jobs:
           find sing-box -depth -name '*sing-box*' -execdir bash -c 'mv "$1" "${1//sing-box/VTBox}"' _ {} \;
           find VTBox -depth -name '*nekohasekai*' -execdir bash -c 'mv "$1" "${1//nekohasekai/vtbox}"' _ {} \;
           find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
-          find VTBox -type f -exec sed -i 's/nekohasekai/vtbox/g' {} +
           cat VTBox/clients/android/app/build.gradle
           tree -a
           
@@ -117,6 +116,7 @@ jobs:
           find VTBox/clients/apple -type f -exec sed -i 's/XC io vtbox sfavt system/vbox system provisioning profile/g' {} +
           find VTBox/clients/apple -type f -exec sed -i 's/XC io vtbox sfavt standalone/vbox standalone provisioning profile/g' {} +
           
+          find VTBox -type f -exec sed -i 's/nekohasekai/vtbox/g' {} +
       
           cat VTBox/clients/apple/VTBox.xcodeproj/project.pbxproj
           cat VTBox/clients/android/app/src/main/AndroidManifest.xml
@@ -126,7 +126,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-v14${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v15${{ vars.LAST_SING_BOX_RELEASE }}
 
 
   ex_build:
