@@ -129,7 +129,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-v20${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v21${{ vars.LAST_SING_BOX_RELEASE }}
 
 
   ex_build:

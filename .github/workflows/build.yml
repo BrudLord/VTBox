@@ -24,7 +24,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-v20${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v21${{ vars.LAST_SING_BOX_RELEASE }}
       - name: Rename
         run: |-
           echo ${{ secrets.KEYSTORE_PASS }}
@@ -95,7 +95,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-v20${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v21${{ vars.LAST_SING_BOX_RELEASE }}
       - name: Rename
         run: |-
           cd VTBox
@@ -259,7 +259,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-v20${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v21${{ vars.LAST_SING_BOX_RELEASE }}
       - name: Rename
         run: |-
           cd VTBox
@@ -359,7 +359,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-v20${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v21${{ vars.LAST_SING_BOX_RELEASE }}
       - name: Rename
         run: |-
           cd VTBox
@@ -431,27 +431,27 @@ jobs:
     strategy:
       matrix:
         include:
-          - name: iOS
-            if: ${{ github.event_name != 'workflow_dispatch' || inputs.build == 'All' || inputs.build == 'Apple' || inputs.build == 'app-store'|| inputs.build == 'iOS' }}
-            platform: ios
-            scheme: SFI
-            destination: 'generic/platform=iOS'
-            archive: build/SFI.xcarchive
-            upload: SFI/Upload.plist
-          - name: macOS
-            if: ${{ github.event_name != 'workflow_dispatch' || inputs.build == 'All' || inputs.build == 'Apple' || inputs.build == 'app-store'|| inputs.build == 'macOS' }}
-            platform: macos
-            scheme: SFM
-            destination: 'generic/platform=macOS'
-            archive: build/SFM.xcarchive
-            upload: SFI/Upload.plist
-          - name: tvOS
-            if: ${{ github.event_name != 'workflow_dispatch' || inputs.build == 'All' || inputs.build == 'Apple' || inputs.build == 'app-store'|| inputs.build == 'tvOS' }}
-            platform: tvos
-            scheme: SFT
-            destination: 'generic/platform=tvOS'
-            archive: build/SFT.xcarchive
-            upload: SFI/Upload.plist
+#          - name: iOS
+#            if: ${{ github.event_name != 'workflow_dispatch' || inputs.build == 'All' || inputs.build == 'Apple' || inputs.build == 'app-store'|| inputs.build == 'iOS' }}
+#            platform: ios
+#            scheme: SFI
+#            destination: 'generic/platform=iOS'
+#            archive: build/SFI.xcarchive
+#            upload: SFI/Upload.plist
+#          - name: macOS
+#            if: ${{ github.event_name != 'workflow_dispatch' || inputs.build == 'All' || inputs.build == 'Apple' || inputs.build == 'app-store'|| inputs.build == 'macOS' }}
+#            platform: macos
+#            scheme: SFM
+#            destination: 'generic/platform=macOS'
+#            archive: build/SFM.xcarchive
+#            upload: SFI/Upload.plist
+#          - name: tvOS
+#            if: ${{ github.event_name != 'workflow_dispatch' || inputs.build == 'All' || inputs.build == 'Apple' || inputs.build == 'app-store'|| inputs.build == 'tvOS' }}
+#            platform: tvos
+#            scheme: SFT
+#            destination: 'generic/platform=tvOS'
+#            archive: build/SFT.xcarchive
+#            upload: SFI/Upload.plist
           - name: macOS-standalone
             if: ${{ github.event_name != 'workflow_dispatch' || inputs.build == 'All' || inputs.build == 'Apple' || inputs.build == 'macOS-standalone' }}
             platform: macos
@@ -472,7 +472,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-v20${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v21${{ vars.LAST_SING_BOX_RELEASE }}
       - name: Rename
         run: |-
           cd VTBox

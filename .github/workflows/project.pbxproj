@@ -2552,6 +2552,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.sagernet.vbox;
 				PRODUCT_NAME = "sing-box";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "vbox provisioning profile";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
