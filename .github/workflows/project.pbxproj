@@ -2127,6 +2127,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.sagernet.vbox.intents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "vbox intents provisioning profile";
 				REEXPORTED_LIBRARY_PATHS = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2632,6 +2633,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.sagernet.vbox;
 				PRODUCT_NAME = "sing-box";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "vbox provisioning profile";
 				REEXPORTED_LIBRARY_PATHS = "";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = NO;
