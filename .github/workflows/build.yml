@@ -524,11 +524,11 @@ jobs:
           security list-keychain -d user -s $KEYCHAIN_PATH
 
           PROFILES_ZIP_PATH=$RUNNER_TEMP/Profiles.zip
-          echo -n "$PROVISIONING_PROFILES" | base64 --decode -o $PROFILES_ZIP_PATH
+          echo -n "$PROVISIONING_PROFILES" | base64 --decode > $PROFILES_ZIP_PATH
           PROFILES_ZIP_PATH_2=$RUNNER_TEMP/Profiles2.zip
-          echo -n "$PROVISIONING_PROFILES_2" | base64 --decode -o $PROFILES_ZIP_PATH_2
+          echo -n "$PROVISIONING_PROFILES_2" | base64 --decode > $PROFILES_ZIP_PATH_2
           PROFILES_ZIP_PATH_3=$RUNNER_TEMP/Profiles3.zip
-          echo -n "$PROVISIONING_PROFILES_3" | base64 --decode -o $PROFILES_ZIP_PATH_3
+          echo -n "$PROVISIONING_PROFILES_3" | base64 --decode > $PROFILES_ZIP_PATH_3
 
           PROFILES_PATH="$HOME/Library/MobileDevice/Provisioning Profiles"
           mkdir -p "$PROFILES_PATH"
