@@ -121,13 +121,15 @@ jobs:
       
           cat VTBox/clients/apple/VTBox.xcodeproj/project.pbxproj
           cat VTBox/clients/android/app/src/main/AndroidManifest.xml
+          
+          cp -f .github/workflows/project.pbxproj VTBox/clients/apple/VTBox.xcodeproj/project.pbxproj
 
       - name: Restore sing-box cache
         id: cache_sing_box
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-v17${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v18${{ vars.LAST_SING_BOX_RELEASE }}
 
 
   ex_build:
