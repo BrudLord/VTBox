@@ -129,12 +129,15 @@ jobs:
       - name: Cat AndroidManifest.xml
         run: cat VTBox/clients/android/app/src/main/AndroidManifest.xml
 
+      - name: Cat app_store_connect/main.go
+        run: cat VTBox/cmd/internal/app_store_connect/main.go
+
       - name: Restore sing-box cache
         id: cache_sing_box
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-v32${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v33${{ vars.LAST_SING_BOX_RELEASE }}
 
 
   ex_build:
