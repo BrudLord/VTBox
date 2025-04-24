@@ -2553,6 +2553,7 @@
 				PRODUCT_NAME = "sing-box";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "vbox provisioning profile";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "vbox provisioning profile";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
