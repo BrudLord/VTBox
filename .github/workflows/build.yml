@@ -438,7 +438,6 @@ jobs:
             destination: 'generic/platform=iOS'
             archive: build/SFI.xcarchive
             upload: SFI/Upload.plist
-            export_path: build/ios-arm64
 #          - name: macOS
 #            if: ${{ github.event_name != 'workflow_dispatch' || inputs.build == 'All' || inputs.build == 'Apple' || inputs.build == 'app-store'|| inputs.build == 'macOS' }}
 #            platform: macos
@@ -577,7 +576,6 @@ jobs:
             -configuration Release \
             -destination "${{ matrix.destination }}" \
             -archivePath "${{ matrix.archive }}" \
-          	-exportPath "${{ matrix.export_path }}" \
             -allowProvisioningUpdates \
             -authenticationKeyPath $ASC_KEY_PATH \
             -authenticationKeyID $ASC_KEY_ID \
@@ -586,7 +584,7 @@ jobs:
         run: |
           ls -R
       - name: Upload to App Store Connect
-        if: false && matrix.if && matrix.name != 'macOS-standalone'
+        if: matrix.if && matrix.name != 'macOS-standalone'
         run: |-
           go run -v ./cmd/internal/app_store_connect cancel_app_store ${{ matrix.platform }}
           cd clients/apple
