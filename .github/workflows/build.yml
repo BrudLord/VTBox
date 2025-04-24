@@ -582,8 +582,9 @@ jobs:
             -authenticationKeyIssuerID $ASC_KEY_ISSUER_ID
       - name: Find
         run: |
+          pwd
+          cd build
           ls
-          find / -name "*.ipa"
       - name: Upload to App Store Connect
         if: false && matrix.if && matrix.name != 'macOS-standalone'
         run: |-
