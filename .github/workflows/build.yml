@@ -583,7 +583,7 @@ jobs:
       - name: Find
         run: |
           pwd
-          cd build
+          cd build/ios-arm64
           ls
       - name: Upload to App Store Connect
         if: false && matrix.if && matrix.name != 'macOS-standalone'
