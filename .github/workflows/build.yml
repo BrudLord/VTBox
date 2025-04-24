@@ -592,6 +592,8 @@ jobs:
             -authenticationKeyPath $ASC_KEY_PATH \
             -authenticationKeyID $ASC_KEY_ID \
             -authenticationKeyIssuerID $ASC_KEY_ISSUER_ID
+      - name: Tree
+        run: tree
       - name: Publish to TestFlight via FastLane
         env:
           APP_STORE_API_KEY: ${{ secrets.ASC_KEY }}
