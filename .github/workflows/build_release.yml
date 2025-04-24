@@ -95,7 +95,7 @@ jobs:
         run: |
           find sing-box -depth -name '*sing-box*' -execdir bash -c 'mv "$1" "${1//sing-box/VTBox}"' _ {} \;
           find VTBox -depth -name '*nekohasekai*' -execdir bash -c 'mv "$1" "${1//nekohasekai/vtbox}"' _ {} \;
-          find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
+          sudo find VTBox -type f -exec sed -i 's/sing-box/VTBox/g' {} +
           cat VTBox/clients/android/app/build.gradle
           tree -a
           
