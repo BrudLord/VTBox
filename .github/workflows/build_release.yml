@@ -82,11 +82,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Clone sing-box repository
-        run: |
-          git clone --recurse-submodules https://github.com/SagerNet/sing-box.git
-          cd sing-box
-          git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
+#      - name: Clone sing-box repository
+#        run: |
+#          git clone --recurse-submodules https://github.com/SagerNet/sing-box.git
+#          cd sing-box
+#          git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
 
       - name: Rename sing-box to VTBox
         run: |
