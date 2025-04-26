@@ -99,7 +99,7 @@ jobs:
           cat VTBox/clients/android/app/build.gradle
           tree -a
           
-          # Удаление указанных разрешений из AndroidManifest.xml
+          # Remove access from AndroidManifest.xml
           sed -i '/<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
           sed -i '/<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
           sed -i '/<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
@@ -108,13 +108,13 @@ jobs:
           sed -i '/QueryAllPackagesPermission/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
           sed -i '/<uses-permission$/d' VTBox/clients/android/app/src/main/AndroidManifest.xml
           
-          # Rewrite team id
-          # find VTBox/clients/apple -type f -exec sed -i 's/287TTNZF8L/F6CHJX72K5/g' {} +
-          # find VTBox/clients/apple -type f -exec sed -i 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' {} +
-          # find VTBox/clients/apple -type f -exec sed -i 's/Apple Development/Apple Distribution/g' {} +
-          # find VTBox/clients/apple -type f -exec sed -i 's/Developer ID Application/Distribution ID Application/g' {} +
-          # find VTBox/clients/apple -type f -exec sed -i 's/XC io nekohasekai sfavt system/vbox system provisioning profile/g' {} +
-          # find VTBox/clients/apple -type f -exec sed -i 's/XC io nekohasekai sfavt standalone/vbox standalone provisioning profile/g' {} +
+          # Rewrite team idproject.pbxproj
+#          find VTBox/clients/apple -type f -exec sed -i 's/287TTNZF8L/F6CHJX72K5/g' {} +
+#          find VTBox/clients/apple -type f -exec sed -i 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' {} +
+#          find VTBox/clients/apple -type f -exec sed -i 's/Apple Development/Apple Distribution/g' {} +
+#          find VTBox/clients/apple -type f -exec sed -i 's/Developer ID Application/Distribution ID Application/g' {} +
+#          find VTBox/clients/apple -type f -exec sed -i 's/XC io nekohasekai sfavt system/vbox system provisioning profile/g' {} +
+#          find VTBox/clients/apple -type f -exec sed -i 's/XC io nekohasekai sfavt standalone/vbox standalone provisioning profile/g' {} +
 
           find VTBox/clients/apple -type f -exec sed -i 's/io.nekohasekai.sfavt/org.sagernet.vbox/g' {} +
           find VTBox -type f -exec sed -i 's/5c5f3b78-b7a0-40c0-bcad-e6ef87bbefda/3c47c2b5-9d8d-49c4-9870-4d9baf4eab4f/g' {} +
@@ -137,7 +137,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-v34${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v35${{ vars.LAST_SING_BOX_RELEASE }}
 
 
   ex_build:
