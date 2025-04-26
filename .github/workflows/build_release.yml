@@ -84,9 +84,6 @@ jobs:
 
       - name: Clone sing-box repository
         run: |
-          echo ${{ secrets.KEYSTORE_PASS }}
-          echo ${{ secrets.ALIAS_NAME }}
-          echo ${{ secrets.ALIAS_PASS }}
           git clone --recurse-submodules https://github.com/SagerNet/sing-box.git
           cd sing-box
           git checkout "v${{ vars.LAST_SING_BOX_RELEASE }}"
