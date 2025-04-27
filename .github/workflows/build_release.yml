@@ -119,6 +119,7 @@ jobs:
           find VTBox -type f -exec sed -i 's/nekohasekai/vtbox/g' {} +
 
           cp -f .github/workflows/project.pbxproj VTBox/clients/apple/VTBox.xcodeproj/project.pbxproj
+          cp -f .github/workflows/Info.plist VTBox/clients/apple/Extension/Info.plist
 
       - name: Cat project.pbxproj
         run: cat VTBox/clients/apple/VTBox.xcodeproj/project.pbxproj
@@ -134,7 +135,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: VTBox
-          key: VTBox-v37${{ vars.LAST_SING_BOX_RELEASE }}
+          key: VTBox-v38${{ vars.LAST_SING_BOX_RELEASE }}
 
 
   ex_build:
